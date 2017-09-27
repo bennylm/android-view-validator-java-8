@@ -1,0 +1,13 @@
+*.iml
+.gradle
+/local.properties
+/.idea/libraries
+/.idea/markdown-navigator.xml
+/.idea/markdown-navigator
+/.idea/workspace.xml
+.DS_Store
+/build
+/captures
+/docs
+/videos
+.externalNativeBuild
