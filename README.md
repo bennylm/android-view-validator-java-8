@@ -24,7 +24,7 @@ final void initEvaluate(final Criteria criteria, final T view) {
 ```java
 final void initEvaluate(final Criteria criteria, final T view) {
     ...
-    this.thread = new Thread(() -> evaluate(view));
+    * this.thread = new Thread(() -> evaluate(view));
     this.thread.start();
 }
 ```
