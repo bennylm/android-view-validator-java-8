@@ -191,6 +191,7 @@ public class Criteria<T extends View> {
              *  => Lambda Expression
              */
             this.thread = new Thread(() -> evaluate(view));
+            this.thread.start();
         }
 
         /**
