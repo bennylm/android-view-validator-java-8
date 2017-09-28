@@ -56,19 +56,17 @@ public class LoginActivity extends AppCompatActivity {
          * a response in <=1500ms to simulate querying a remote service.
          */
         EditText userNameEditText = (EditText) findViewById(R.id.user_name);
-        final Validator<EditText> userNameAvailableValidator = new Validator<EditText>(new Criteria<EditText>(userNameEditText)
+        final Validator<EditText> userNameAvailableValidator = new Validator<>(new Criteria<>(userNameEditText)
             .asyncTest(new Criteria.AsyncCondition<EditText>() {
 
                 @Override
                 protected void evaluate(EditText view) {
                     UserRepository userRepository = new UserRepository();
-                    userRepository.getUser(view.getText().toString(), new UserRepository.OnuserRetrievedListener() {
-                        @Override
-                        public void onUserRetrieved(User user) {
-                            // The username is available (returns true) if no user is found.
-                            complete(user == null);
-                        }
-                    });
+
+                    /* Java 8
+                     *  => Lambda Expression
+                     */
+                    userRepository.getUser(view.getText().toString(), user -> complete(user == null));
                 }
 
                 @Override
@@ -108,29 +106,29 @@ public class LoginActivity extends AppCompatActivity {
          * Create a Validator for the username field that will
          *  be used to check if it contains valid characters
         */
-        final Validator<EditText> userNameCompliesValidator = new Validator<>(new Criteria<EditText>(userNameEditText)
+        final Validator<EditText> userNameCompliesValidator = new Validator<>(new Criteria<>(userNameEditText)
                 // Make sure it doesn't contain special characters
-                .test(new Criteria.Condition<EditText>() {
-                    @Override
-                    public boolean evaluate(EditText view) {
-                        return Pattern.matches("^[a-zA-Z0-9]*$", view.getText().toString());
-                    }
+                /* Java 8
+                 *  => Lambda Expression
+                 */
+                .test(editText -> Pattern.matches("^[a-zA-Z0-9]*$", editText.getText().toString()))
+
                 // Make sure it contains the name of a popular fruit
-                }).test(new Criteria.Condition<EditText>() {
-                    @Override
-                    public boolean evaluate(EditText view) {
-                        String[] fruit = {
-                                "apple",
-                                "banana",
-                                "blueberry",
-                                "kiwi",
-                                "orange",
-                                "strawberry"
-                        };
-                        Pattern pattern = Pattern.compile(TextUtils.join("|", fruit));
-                        Matcher matcher = pattern.matcher(view.getText().toString().toLowerCase());
-                        return matcher.find();
-                    }
+                /* Java 8
+                 *  => Lambda Expression
+                 */
+                .test(editText -> {
+                    String[] fruit = {
+                            "apple",
+                            "banana",
+                            "blueberry",
+                            "kiwi",
+                            "orange",
+                            "strawberry"
+                    };
+                    Pattern pattern = Pattern.compile(TextUtils.join("|", fruit));
+                    Matcher matcher = pattern.matcher(editText.getText().toString().toLowerCase());
+                    return matcher.find();
                 })
         );
 

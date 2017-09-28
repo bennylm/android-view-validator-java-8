@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/android-view-validation.iml" filepath="$PROJECT_DIR$/android-view-validation.iml" />
+      <module fileurl="file://C:\Users\benja\code\android-view-validation-java-8\android-view-validation.iml" filepath="C:\Users\benja\code\android-view-validation-java-8\android-view-validation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-view-validation-java-8.iml" filepath="$PROJECT_DIR$/android-view-validation-java-8.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/view-validation-library/view-validation-library.iml" filepath="$PROJECT_DIR$/view-validation-library/view-validation-library.iml" />
     </modules>

@@ -90,14 +90,20 @@ public class ValidatorSet implements Validation {
      */
     @Override
     public void validate() {
-        for (Validator validator : validators) {
-            validator.validate();
-        }
+
+        /* Java 8
+         *  => collection.forEach(Consumer<? super T> action)
+         *  => Method Reference
+         */
+        this.validators.forEach(Validator::validate);
     }
 
     public void cancelValidation() {
-        for (Validator validator : validators) {
-            validator.cancelValidation();
-        }
+
+        /* Java 8
+         *  => collection.forEach(Consumer<? super T> action)
+         *  => Method Reference
+         */
+        this.validators.forEach(Validator::cancelValidation);
     }
 }

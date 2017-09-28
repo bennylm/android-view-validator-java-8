@@ -56,12 +56,11 @@ public class Validator<T extends View> implements Validation {
      */
     @Override
     public void validate() {
-        this.criteria.evaluate(new Criteria.EvalCompleteListener() {
-            @Override
-            public void onComplete(ValidationResult validationResult) {
-                Notifier.notify(observers, validationResult);
-            }
-        });
+
+        /* Java 8
+         *  => Lambda Expression
+         */
+        this.criteria.evaluate(validationResult -> Notifier.notify(observers, validationResult));
     }
 
     public void cancelValidation() {
@@ -90,9 +89,11 @@ public class Validator<T extends View> implements Validation {
          * @param validationResult the state of the view being evaluated
          */
          static void notify(Set<Observer> observers, ValidationResult validationResult) {
-            for (Observer observer : observers) {
-                observer.update(validationResult);
-            }
+
+             /* Java 8
+              *  => collection.forEach(Consumer<? super T> action)
+              */
+             observers.forEach(observer -> observer.update(validationResult));
         }
     }
 }

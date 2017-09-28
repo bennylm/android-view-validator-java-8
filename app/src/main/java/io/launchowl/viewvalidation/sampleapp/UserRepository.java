@@ -6,6 +6,7 @@ import android.os.Message;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -43,13 +44,14 @@ public class UserRepository {
      * @return a {@link User}
      */
     private User findUser(String userName) {
-        for (User user : users) {
-            if (user.userName().equals(userName)) {
-                return user;
-            }
-        }
-
-        return null;
+        /* Java 8
+         *  => collection.stream()
+         *  => stream.filter(Predicate<? super T> predicate)
+         *  => stream.findFirst()
+         *  => optional.orElse(T other)
+         */
+        Optional<User> optional = users.stream().filter(user -> user.userName().toLowerCase().equals(userName.toLowerCase())).findFirst();
+        return optional.orElse(null);
     }
 
     /**

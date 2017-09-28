@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Consumer;
 
 /**
  * This class contains a collection conditions that are tested to determine if a view is valid.
@@ -186,14 +187,10 @@ public class Criteria<T extends View> {
                 this.thread.interrupt();
             }
 
-
-            this.thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    evaluate(view);
-                }
-            });
-            thread.start();
+            /* Java 8
+             *  => Lambda Expression
+             */
+            this.thread = new Thread(() -> evaluate(view));
         }
 
         /**
@@ -298,24 +295,31 @@ public class Criteria<T extends View> {
      * Evaluate all synchronous conditions.
      */
     void evaluateConditions() {
-        for (Condition<T> condition : this.conditions) {
-            setValidationResult(condition.evaluate(this.validatedView));
-        }
+
+        /* Java 8
+         *  => collection.forEach(Consumer<? super T> action)
+         */
+        this.conditions.forEach(condition -> setValidationResult(condition.evaluate(this.validatedView)));
     }
 
     /**
      * Initiate all asynchronous conditions.
      */
     void evaluateAsyncConditions() {
-        for (AsyncCondition<T> asyncCondition : this.asyncConditions) {
-            asyncCondition.initEvaluate(this, this.validatedView);
-        }
+
+        /* Java 8
+         *  => collection.forEach(Consumer<? super T> action)
+         */
+        this.asyncConditions.forEach(asyncCondition -> asyncCondition.initEvaluate(this, this.validatedView));
     }
 
     void cancelValidation() {
-        for (AsyncCondition<T> asyncCondition : this.asyncConditions) {
-            asyncCondition.cancel();
-        }
+
+        /* Java 8
+         *  => collection.forEach(Consumer<? super T> action)
+         *  => Method Reference
+         */
+        this.asyncConditions.forEach(AsyncCondition::cancel);
     }
 
     /**
