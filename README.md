@@ -3,7 +3,7 @@
 
 This project is identical to the [Java 7](https://github.com/bennylm/android-view-validator) version, except where Java 8 features can be used. The differences are included below,  separated by class.
 
-### [Criteria](blob/master/view-validation-library/src/main/java/io/launchowl/viewvalidationlibrary/Criteria.java)
+### [Criteria](view-validation-library/src/main/java/io/launchowl/viewvalidationlibrary/Criteria.java)
 
 #### Before
 ```java
@@ -24,7 +24,7 @@ final void initEvaluate(final Criteria criteria, final T view) {
 ```java
 final void initEvaluate(final Criteria criteria, final T view) {
     ...
-    * this.thread = new Thread(() -> evaluate(view));
+    this.thread = new Thread(() -> evaluate(view));
     this.thread.start();
 }
 ```
@@ -67,7 +67,7 @@ void cancelValidation() {
 }
 ```
 
-### [Validator](blob/master/view-validation-library/src/main/java/io/launchowl/viewvalidationlibrary/Validator.java)
+### [Validator](view-validation-library/src/main/java/io/launchowl/viewvalidationlibrary/Validator.java)
 
 #### Before
 ```java
@@ -115,7 +115,7 @@ private static class Notifier {
 
 ---
 
-### [ValidatorSet](blob/master/view-validation-library/src/main/java/io/launchowl/viewvalidationlibrary/ValidatorSet.java)
+### [ValidatorSet](view-validation-library/src/main/java/io/launchowl/viewvalidationlibrary/ValidatorSet.java)
 
 #### Before
 ```java
