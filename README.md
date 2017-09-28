@@ -1,7 +1,7 @@
 # Android View Validator + Observer Views + Java 8
 
 
-This project is identical to the [Java 7](https://github.com/bennylm/android-view-validator) version, except where Java 8 features can be used. The differences are included below,  separated by class.
+This project is identical to the [Java 7 version](https://github.com/bennylm/android-view-validator), except where Java 8 features can be used. The differences are included below,  separated by class.
 
 ### [Criteria](view-validation-library/src/main/java/io/launchowl/viewvalidationlibrary/Criteria.java)
 
