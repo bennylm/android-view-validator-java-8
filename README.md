@@ -1,7 +1,23 @@
 # Android View Validator + Observer Views + Java 8
 
 
-This project is identical to the [Java 7 version](https://github.com/bennylm/android-view-validator), except where Java 8 features can be used. The differences are included below,  separated by class.
+This project is identical to the [Java 7 version](https://github.com/bennylm/android-view-validator), except where Java 8 features can be used. The differences are included below, separated by class.
+
+> **Note:** Several [Java 8 language features](https://developer.android.com/studio/write/java8-support.html) are included in [Android Studio Preview (3.0)](https://developer.android.com/studio/preview/index.html). You can install a preview version of Android Studio [alongside the stable version]((https://developer.android.com/studio/preview/install-preview.html)) to explore new features. Any module that includes Java 8 features will require additional configuration in the module's **build.gradle** file.
+
+```
+android {
+  ...
+  // Configure only for each module that uses Java 8
+  // language features (either in its source code or
+  // through dependencies).
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+}
+
+```
 
 ### [Criteria](view-validation-library/src/main/java/io/launchowl/viewvalidationlibrary/Criteria.java)
 
